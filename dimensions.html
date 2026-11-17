@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000033">
+  <meta name="description" content="MECHSPEC Dimension Finder — ANSI B16.5 flange dimensions for Class 150 and Class 300.">
+  <title>Dimension Finder — MECHSPEC</title>
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./data.js" defer></script>
+  <script src="./app.js" defer></script>
+  <script src="./nav.js" defer></script>
+</head>
+<body>
+    <header class="site-header" id="siteHeader">
+    <a class="brand" href="./index.html" aria-label="MECHSPEC home">
+      <img class="brand-logo" src="./logo-header.png" alt="MECHSPEC" width="261" height="52">
+    </a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mainNav"><span></span><span></span></button>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a href="./index.html">Home</a>
+      <a class="active" href="./dimensions.html">Dimensions</a>
+      <a href="./calculators.html">Calculators</a>
+      <a href="./standards.html">Standards</a>
+      <a href="./notes.html">Notes</a>
+      <a href="./upcoming.html">Upcoming</a>
+      <a class="nav-cta" href="./calculators.html">Open calculators <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="eyebrow"><span class="eyebrow-line"></span> ANSI B16.5 REFERENCE</div>
+      <h1>Flange<br><em>dimensions</em></h1>
+      <p>Choose a nominal pipe size, pressure class and flange type. Matching reference dimensions appear instantly below — all values in millimetres.</p>
+    </section>
+
+    <section class="explorer-section section-wrap" id="explorer">
+      <div class="finder-panel">
+        <div class="finder-top">
+          <div><span class="step-label">01 / Select parameters</span><h3>Choose size, class &amp; type</h3></div>
+          <span class="live-indicator"><i></i><span id="dataStatus">LOADING REFERENCE DATA</span></span>
+        </div>
+        <div class="controls">
+          <div class="field">
+            <label for="sizeSelect">Nominal pipe size <small>inch / NB</small></label>
+            <select id="sizeSelect" name="size" autocomplete="off"><option value="">Loading sizes…</option></select>
+          </div>
+          <div class="field">
+            <label for="classSelect">Pressure class <small>ASME</small></label>
+            <select id="classSelect" name="pressureClass" autocomplete="off" disabled><option value="">Select size first</option></select>
+          </div>
+          <div class="field">
+            <label for="typeSelect">Flange type <small>configuration</small></label>
+            <select id="typeSelect" name="flangeType" autocomplete="off"><option value="all">All flange types</option></select>
+          </div>
+        </div>
+        <p class="finder-hint"><span>ⓘ</span> Choose a size and class to load dimensions. All dimensional values are shown in millimetres (mm).</p>
+      </div>
+
+      <section class="results" id="result" aria-live="polite" aria-atomic="true">
+        <div class="empty"><div class="empty-icon">⌖</div><b>Your dimensions will appear here</b><span>Choose a nominal pipe size and pressure class above to get started.</span></div>
+      </section>
+    </section>
+  </main>
+
+    <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="./logo-header.png" alt="MECHSPEC" width="200" height="40">
+        <p>Practical mechanical engineering dimensions and fabrication calculators.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="./dimensions.html">Flange dimensions</a>
+        <a href="./calculators.html">All calculators</a>
+        <a href="./upcoming.html">Upcoming data</a>
+      </div>
+      <div class="footer-col">
+        <h4>Reference</h4>
+        <a href="./standards.html">Standards</a>
+        <a href="./notes.html">Notes &amp; disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© MECHSPEC · Engineering dimensions</span>
+      <span>For reference only — verify against governing codes</span>
+    </div>
+  </footer>
+</body>
+</html>

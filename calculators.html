@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000033">
+  <meta name="description" content="MECHSPEC online fabrication calculators — nozzle orientation, shell thickness, weight, blank diameter, helix.">
+  <title>Calculators — MECHSPEC</title>
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./nav.js" defer></script>
+  <script src="./calculators.js" defer></script>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="./index.html" aria-label="MECHSPEC home">
+      <img class="brand-logo" src="./logo-header.png" alt="MECHSPEC" width="261" height="52">
+    </a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mainNav"><span></span><span></span></button>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a href="./index.html">Home</a>
+      <a href="./dimensions.html">Dimensions</a>
+      <a class="active" href="./calculators.html">Calculators</a>
+      <a href="./standards.html">Standards</a>
+      <a href="./notes.html">Notes</a>
+      <a href="./upcoming.html">Upcoming</a>
+      <a class="nav-cta" href="./dimensions.html">Flange data <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-hero">
+      <div class="eyebrow"><span class="eyebrow-line"></span> FABRICATION TOOLS</div>
+      <h1>Online <em>calculators</em></h1>
+      <p>Client-side engineering helpers for shop marking, thickness checks, weight estimates and developments. Results are approximate — always verify against the governing code and drawing.</p>
+    </div>
+
+    <section class="section">
+      <!-- Calculator switcher -->
+      <div class="panel" style="margin-bottom:28px">
+        <div class="panel-title">Select calculator</div>
+        <div class="form-grid" style="align-items:end">
+          <div class="field" style="grid-column:1 / -1;max-width:420px">
+            <label for="calcSelect">Calculator</label>
+            <select id="calcSelect">
+              <option value="nozzle">Nozzle orientation marking</option>
+              <option value="thickness">Cylindrical shell thickness</option>
+              <option value="weight">Weight estimator</option>
+              <option value="blank">Blank diameter (dish / cone)</option>
+              <option value="helix">Helix / screw flight length</option>
+              <option value="pipe">Pipe internal volume &amp; weight</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOZZLE -->
+      <div class="calc-block" id="calc-nozzle" data-calc="nozzle">
+        <div class="section-head" style="margin-bottom:20px">
+          <h2 style="font-size:24px;margin:0">Nozzle orientation <em>marking</em></h2>
+          <p style="margin-top:8px">Given vessel OD and angular position, compute arc length and chord for layout marking on the shell circumference.</p>
+        </div>
+        <div class="calc-layout">
+          <div class="panel">
+            <div class="panel-title">Inputs</div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="nz-od">Vessel OD (mm)</label>
+                <input type="number" id="nz-od" value="1200" min="1" step="any">
+              </div>
+              <div class="field">
+                <label for="nz-angle">Angle from datum (°)</label>
+                <input type="number" id="nz-angle" value="45" min="0" max="360" step="any">
+              </div>
+              <div class="field">
+                <label for="nz-from">Measure from</label>
+                <select id="nz-from">
+                  <option value="top">Top (0°)</option>
+                  <option value="bottom">Bottom (180°)</option>
+                  <option value="side">Side (90°)</option>
+                </select>
+              </div>
+            </div>
+            <p class="hint">Arc = π × OD × (θ/360). Chord = OD × sin(θ/2) using mid-radius approximation when marking on OD.</p>
+          </div>
+          <div class="calc-results" id="nz-out">
+            <h3>Results</h3>
+            <div class="result-row"><span class="rk">Circumference</span><span class="rv" data-k="circ">—</span></div>
+            <div class="result-row"><span class="rk">Arc length</span><span class="rv" data-k="arc">—</span></div>
+            <div class="result-row"><span class="rk">Chord length</span><span class="rv" data-k="chord">—</span></div>
+            <div class="result-row"><span class="rk">Remaining arc</span><span class="rv" data-k="remain">—</span></div>
+            <div class="disclaimer">Marking aid only. Confirm orientation against GA drawing and code requirements.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THICKNESS -->
+      <div class="calc-block" id="calc-thickness" data-calc="thickness" hidden>
+        <div class="section-head" style="margin-bottom:20px">
+          <h2 style="font-size:24px;margin:0">Cylindrical shell <em>thickness</em></h2>
+          <p style="margin-top:8px">Required thickness for a cylindrical shell under internal pressure (ASME VIII Div.1 style: t = P·R / (S·E − 0.6·P) + CA).</p>
+        </div>
+        <div class="calc-layout">
+          <div class="panel">
+            <div class="panel-title">Inputs</div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="th-p">Design pressure P (MPa)</label>
+                <input type="number" id="th-p" value="1.0" min="0" step="any">
+              </div>
+              <div class="field">
+                <label for="th-r">Inside radius R (mm)</label>
+                <input type="number" id="th-r" value="500" min="1" step="any">
+              </div>
+              <div class="field">
+                <label for="th-s">Allowable stress S (MPa)</label>
+                <input type="number" id="th-s" value="138" min="1" step="any">
+              </div>
+              <div class="field">
+                <label for="th-e">Joint efficiency E</label>
+                <input type="number" id="th-e" value="1.0" min="0.1" max="1" step="0.05">
+              </div>
+              <div class="field">
+                <label for="th-ca">Corrosion allowance (mm)</label>
+                <input type="number" id="th-ca" value="1.5" min="0" step="any">
+              </div>
+            </div>
+            <p class="hint">Denominator must stay positive (S·E &gt; 0.6·P). Units consistent: MPa and mm.</p>
+          </div>
+          <div class="calc-results" id="th-out">
+            <h3>Results</h3>
+            <div class="result-row"><span class="rk">Required t (no CA)</span><span class="rv" data-k="t0">—</span></div>
+            <div class="result-row"><span class="rk">Required t + CA</span><span class="rv" data-k="t">—</span></div>
+            <div class="result-row"><span class="rk">Min. recommended plate</span><span class="rv" data-k="plate">—</span></div>
+            <div class="disclaimer">Preliminary estimate only. Final thickness must follow the applicable pressure vessel code and design report.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEIGHT -->
+      <div class="calc-block" id="calc-weight" data-calc="weight" hidden>
+        <div class="section-head" style="margin-bottom:20px">
+          <h2 style="font-size:24px;margin:0">Weight <em>estimator</em></h2>
+          <p style="margin-top:8px">Estimate mass from geometry. Density defaults to carbon steel (7.85 g/cm³).</p>
+        </div>
+        <div class="calc-layout">
+          <div class="panel">
+            <div class="panel-title">Inputs</div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="wt-shape">Shape</label>
+                <select id="wt-shape">
+                  <option value="plate">Rectangular plate</option>
+                  <option value="pipe">Pipe / cylinder</option>
+                  <option value="flange">Annular flange / ring</option>
+                  <option value="disc">Solid disc</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="wt-dens">Density (g/cm³)</label>
+                <input type="number" id="wt-dens" value="7.85" min="0.1" step="any">
+              </div>
+              <div class="field wt-f" data-for="plate disc">
+                <label for="wt-l">Length / OD (mm)</label>
+                <input type="number" id="wt-l" value="1000" min="0" step="any">
+              </div>
+              <div class="field wt-f" data-for="plate">
+                <label for="wt-w">Width (mm)</label>
+                <input type="number" id="wt-w" value="500" min="0" step="any">
+              </div>
+              <div class="field wt-f" data-for="plate pipe flange disc">
+                <label for="wt-t">Thickness / length (mm)</label>
+                <input type="number" id="wt-t" value="10" min="0" step="any">
+              </div>
+              <div class="field wt-f" data-for="pipe flange">
+                <label for="wt-od">Outside Ø (mm)</label>
+                <input type="number" id="wt-od" value="300" min="0" step="any">
+              </div>
+              <div class="field wt-f" data-for="pipe flange">
+                <label for="wt-id">Inside Ø / bore (mm)</label>
+                <input type="number" id="wt-id" value="250" min="0" step="any">
+              </div>
+            </div>
+          </div>
+          <div class="calc-results" id="wt-out">
+            <h3>Results</h3>
+            <div class="result-row"><span class="rk">Volume</span><span class="rv" data-k="vol">—</span></div>
+            <div class="result-row"><span class="rk">Mass</span><span class="rv" data-k="mass">—</span></div>
+            <div class="result-row"><span class="rk">Mass (approx.)</span><span class="rv" data-k="masskg">—</span></div>
+            <div class="disclaimer">Ignores welds, coatings and tolerances. Use manufacturer data for procurement weights.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLANK -->
+      <div class="calc-block" id="calc-blank" data-calc="blank" hidden>
+        <div class="section-head" style="margin-bottom:20px">
+          <h2 style="font-size:24px;margin:0">Blank <em>diameter</em></h2>
+          <p style="margin-top:8px">Approximate blank size for 2:1 ellipsoidal dish and for a right circular cone development.</p>
+        </div>
+        <div class="calc-layout">
+          <div class="panel">
+            <div class="panel-title">Inputs</div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="bl-type">Type</label>
+                <select id="bl-type">
+                  <option value="dish">2:1 ellipsoidal dish</option>
+                  <option value="cone">Conical section</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="bl-od">Inside / base Ø (mm)</label>
+                <input type="number" id="bl-od" value="1000" min="1" step="any">
+              </div>
+              <div class="field">
+                <label for="bl-t">Thickness (mm)</label>
+                <input type="number" id="bl-t" value="8" min="0" step="any">
+              </div>
+              <div class="field bl-cone">
+                <label for="bl-h">Cone height (mm)</label>
+                <input type="number" id="bl-h" value="400" min="1" step="any">
+              </div>
+              <div class="field bl-cone">
+                <label for="bl-top">Top Ø (mm, 0 = apex)</label>
+                <input type="number" id="bl-top" value="0" min="0" step="any">
+              </div>
+            </div>
+            <p class="hint">Dish blank ≈ 1.22 × ID + allowance. Cone uses sector radius from slant height.</p>
+          </div>
+          <div class="calc-results" id="bl-out">
+            <h3>Results</h3>
+            <div class="result-row"><span class="rk">Blank diameter</span><span class="rv" data-k="blank">—</span></div>
+            <div class="result-row"><span class="rk">Slant / arc info</span><span class="rv" data-k="info">—</span></div>
+            <div class="result-row"><span class="rk">Sector angle (cone)</span><span class="rv" data-k="angle">—</span></div>
+            <div class="disclaimer">Shop approximation. Add trimming allowance and confirm with forming procedure.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HELIX -->
+      <div class="calc-block" id="calc-helix" data-calc="helix" hidden>
+        <div class="section-head" style="margin-bottom:20px">
+          <h2 style="font-size:24px;margin:0">Helix / screw <em>flight</em></h2>
+          <p style="margin-top:8px">Developed outer &amp; inner edge lengths for one pitch of a helical screw flight.</p>
+        </div>
+        <div class="calc-layout">
+          <div class="panel">
+            <div class="panel-title">Inputs</div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="hx-od">Flight OD (mm)</label>
+                <input type="number" id="hx-od" value="300" min="1" step="any">
+              </div>
+              <div class="field">
+                <label for="hx-id">Flight ID / shaft (mm)</label>
+                <input type="number" id="hx-id" value="80" min="0" step="any">
+              </div>
+              <div class="field">
+                <label for="hx-pitch">Pitch (mm)</label>
+                <input type="number" id="hx-pitch" value="200" min="1" step="any">
+              </div>
+              <div class="field">
+                <label for="hx-turns">Number of turns</label>
+                <input type="number" id="hx-turns" value="1" min="0.1" step="any">
+              </div>
+            </div>
+          </div>
+          <div class="calc-results" id="hx-out">
+            <h3>Results</h3>
+            <div class="result-row"><span class="rk">Outer developed length</span><span class="rv" data-k="lo">—</span></div>
+            <div class="result-row"><span class="rk">Inner developed length</span><span class="rv" data-k="li">—</span></div>
+            <div class="result-row"><span class="rk">Flight face width</span><span class="rv" data-k="w">—</span></div>
+            <div class="result-row"><span class="rk">Blank OD (approx.)</span><span class="rv" data-k="blank">—</span></div>
+            <div class="disclaimer">Geometric development. Forming stretch and thickness not included.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PIPE -->
+      <div class="calc-block" id="calc-pipe" data-calc="pipe" hidden>
+        <div class="section-head" style="margin-bottom:20px">
+          <h2 style="font-size:24px;margin:0">Pipe volume <em>&amp; weight</em></h2>
+          <p style="margin-top:8px">Internal volume and steel weight for a straight pipe length.</p>
+        </div>
+        <div class="calc-layout">
+          <div class="panel">
+            <div class="panel-title">Inputs</div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="pp-od">Outside Ø (mm)</label>
+                <input type="number" id="pp-od" value="219.1" min="1" step="any">
+              </div>
+              <div class="field">
+                <label for="pp-thk">Wall thickness (mm)</label>
+                <input type="number" id="pp-thk" value="6.35" min="0.1" step="any">
+              </div>
+              <div class="field">
+                <label for="pp-len">Length (m)</label>
+                <input type="number" id="pp-len" value="6" min="0" step="any">
+              </div>
+              <div class="field">
+                <label for="pp-dens">Density (g/cm³)</label>
+                <input type="number" id="pp-dens" value="7.85" min="0.1" step="any">
+              </div>
+            </div>
+          </div>
+          <div class="calc-results" id="pp-out">
+            <h3>Results</h3>
+            <div class="result-row"><span class="rk">Inside Ø</span><span class="rv" data-k="id">—</span></div>
+            <div class="result-row"><span class="rk">Internal volume</span><span class="rv" data-k="vol">—</span></div>
+            <div class="result-row"><span class="rk">Steel mass</span><span class="rv" data-k="mass">—</span></div>
+            <div class="result-row"><span class="rk">Mass per metre</span><span class="rv" data-k="mpm">—</span></div>
+            <div class="disclaimer">Nominal geometry only — not a substitute for mill certificates.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="./logo-header.png" alt="MECHSPEC" width="200" height="40">
+        <p>Practical mechanical engineering dimensions and fabrication calculators.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="./dimensions.html">Flange dimensions</a>
+        <a href="./calculators.html">All calculators</a>
+        <a href="./upcoming.html">Upcoming data</a>
+      </div>
+      <div class="footer-col">
+        <h4>Reference</h4>
+        <a href="./standards.html">Standards</a>
+        <a href="./notes.html">Notes &amp; disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© MECHSPEC · Engineering dimensions</span>
+      <span>For reference only — verify against governing codes</span>
+    </div>
+  </footer>
+</body>
+</html>

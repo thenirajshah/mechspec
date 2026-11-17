@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000033">
+  <meta name="description" content="MECHSPEC — Engineering dimensions, flange data and online fabrication calculators for mechanical engineers.">
+  <title>MECHSPEC — Engineering Dimensions</title>
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./nav.js" defer></script>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="./index.html" aria-label="MECHSPEC home">
+      <img class="brand-logo" src="./logo-header.png" alt="MECHSPEC" width="261" height="52">
+    </a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mainNav"><span></span><span></span></button>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a class="active" href="./index.html">Home</a>
+      <a href="./dimensions.html">Dimensions</a>
+      <a href="./calculators.html">Calculators</a>
+      <a href="./standards.html">Standards</a>
+      <a href="./notes.html">Notes</a>
+      <a href="./upcoming.html">Upcoming</a>
+      <a class="nav-cta" href="./calculators.html">Open calculators <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="eyebrow"><span class="eyebrow-line"></span> ENGINEERING DATA <i></i> FABRICATION TOOLS</div>
+        <h1>Dimensions<br>that <em>fit.</em><br>Calculators<br>that <em>work.</em></h1>
+        <p class="hero-lead">MECHSPEC is a practical reference for mechanical engineers — ANSI B16.5 flange dimensions plus online fabrication calculators for nozzles, thickness, weight and more. Built for GitHub Pages, runs fully offline.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="./calculators.html">Browse calculators <span>↗</span></a>
+          <a class="button button-outline" href="./dimensions.html">Flange dimensions</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="MECHSPEC logo">
+        <div class="hero-logo-wrap">
+          <img src="./logo-banner.png" alt="MECHSPEC Engineering Dimensions" width="720" height="143">
+        </div>
+        <div class="visual-index">FIG. 01</div>
+        <div class="visual-caption">MECHSPEC · Engineering dimensions</div>
+      </div>
+      <div class="hero-stats" aria-label="Coverage">
+        <div class="stat"><strong>06+</strong><span>Online calculators</span></div>
+        <div class="stat"><strong>42</strong><span>Flange dimension rows</span></div>
+        <div class="stat"><strong>21</strong><span>Nominal pipe sizes</span></div>
+        <div class="stat-note">Static site.<br><b>Works on GitHub Pages.</b></div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track">
+      <span>ANSI B16.5</span><i>✳</i><span>CLASS 150</span><i>✳</i><span>CLASS 300</span><i>✳</i>
+      <span>NOZZLE ORIENTATION</span><i>✳</i><span>VESSEL THICKNESS</span><i>✳</i><span>WEIGHT CALCULATOR</span><i>✳</i>
+      <span>BLANK DIAMETER</span><i>✳</i><span>ALL VALUES IN MM</span><i>✳</i>
+      <span>ANSI B16.5</span><i>✳</i><span>CLASS 150</span><i>✳</i><span>CLASS 300</span><i>✳</i>
+      <span>NOZZLE ORIENTATION</span><i>✳</i><span>VESSEL THICKNESS</span><i>✳</i><span>WEIGHT CALCULATOR</span><i>✳</i>
+      <span>BLANK DIAMETER</span><i>✳</i><span>ALL VALUES IN MM</span><i>✳</i>
+    </div></div>
+
+    <section class="section" id="tools">
+      <div class="section-head">
+        <div class="eyebrow"><span class="eyebrow-line"></span> TOOLKIT</div>
+        <h2>Reference <em>&amp;</em> calculators</h2>
+        <p>Look up standard flange dimensions or run shop-floor fabrication calculators — all client-side, no server required.</p>
+      </div>
+      <div class="card-grid">
+        <a class="card" href="./dimensions.html">
+          <div class="card-icon">⌀</div>
+          <h3>Flange dimensions</h3>
+          <p>ANSI B16.5 Class 150 &amp; 300 — OD, thickness, bolt circle, holes and type-specific lengths.</p>
+          <span class="card-link">Open finder <span>↗</span></span>
+        </a>
+        <a class="card" href="./calculators.html#nozzle">
+          <div class="card-icon">◎</div>
+          <h3>Nozzle orientation</h3>
+          <p>Arc length and chord for marking nozzle angular positions on vessel shells.</p>
+          <span class="card-link">Calculate <span>↗</span></span>
+        </a>
+        <a class="card" href="./calculators.html#thickness">
+          <div class="card-icon">▣</div>
+          <h3>Shell thickness</h3>
+          <p>Cylindrical shell required thickness under internal pressure (ASME-style formula).</p>
+          <span class="card-link">Calculate <span>↗</span></span>
+        </a>
+        <a class="card" href="./calculators.html#weight">
+          <div class="card-icon">⚖</div>
+          <h3>Weight estimator</h3>
+          <p>Plate, pipe, flange and ring weights from geometry and material density.</p>
+          <span class="card-link">Calculate <span>↗</span></span>
+        </a>
+        <a class="card" href="./calculators.html#blank">
+          <div class="card-icon">◌</div>
+          <h3>Blank diameter</h3>
+          <p>Approximate blank size for dish ends and conical developments.</p>
+          <span class="card-link">Calculate <span>↗</span></span>
+        </a>
+        <a class="card" href="./calculators.html#helix">
+          <div class="card-icon">∿</div>
+          <h3>Helix / screw flight</h3>
+          <p>Developed length and blank layout for helical screw flights.</p>
+          <span class="card-link">Calculate <span>↗</span></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="section-head">
+        <div class="eyebrow"><span class="eyebrow-line"></span> DOCS</div>
+        <h2>Standards <em>&amp;</em> notes</h2>
+        <p>Short documentation pages for ASME B16.5 context and how to use the data safely.</p>
+      </div>
+      <div class="card-grid">
+        <a class="card" href="./standards.html">
+          <div class="card-icon">§</div>
+          <h3>Standards</h3>
+          <p>What ANSI / ASME B16.5 covers and how the published tables map to this site.</p>
+          <span class="card-link">Read <span>↗</span></span>
+        </a>
+        <a class="card" href="./notes.html">
+          <div class="card-icon">✎</div>
+          <h3>Reference notes</h3>
+          <p>Units, tolerances, verification checklist and engineering disclaimer.</p>
+          <span class="card-link">Read <span>↗</span></span>
+        </a>
+        <a class="card" href="./upcoming.html">
+          <div class="card-icon">◷</div>
+          <h3>Upcoming</h3>
+          <p>Pipe dimension tables and additional pressure classes planned next.</p>
+          <span class="card-link">Preview <span>↗</span></span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="./logo-header.png" alt="MECHSPEC" width="200" height="40">
+        <p>Practical mechanical engineering dimensions and fabrication calculators. Static site ready for GitHub Pages.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="./dimensions.html">Flange dimensions</a>
+        <a href="./calculators.html">All calculators</a>
+        <a href="./upcoming.html">Upcoming data</a>
+      </div>
+      <div class="footer-col">
+        <h4>Reference</h4>
+        <a href="./standards.html">Standards</a>
+        <a href="./notes.html">Notes &amp; disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© MECHSPEC · Engineering dimensions</span>
+      <span>For reference only — verify against governing codes</span>
+    </div>
+  </footer>
+</body>
+</html>
