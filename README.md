@@ -2,7 +2,7 @@
 
 Practical mechanical engineering dimensions and fabrication calculators.
 
-**Live site (after GitHub Pages setup):** `https://<your-username>.github.io/<repo-name>/`
+Live site https://thenirajshah.github.io/mechspec/
 
 ## Pages
 
